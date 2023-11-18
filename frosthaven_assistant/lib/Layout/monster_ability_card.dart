@@ -23,15 +23,19 @@ class MonsterAbilityCardWidget extends StatefulWidget {
   MonsterAbilityCardWidgetState createState() =>
       MonsterAbilityCardWidgetState();
 
+  static const int CARD_WIDTH = 178;
+  static const int CARD_HEIGHT = 123;
+  static const double SCALE_FACTOR = 0.8;
+
   static List<Widget> buildGraphicPositionals(
       double scale, List<GraphicPositional> positionals) {
     List<Widget> list = [];
-    double cardWidth = 178 * 0.8 * scale;
-    double cardHeight = 118 * 0.8 * scale;
+    double cardWidth = CARD_WIDTH * SCALE_FACTOR * scale;
+    double cardHeight = 118 * SCALE_FACTOR * scale;
 
     for (GraphicPositional item in positionals) {
-      double scaleConstant =
-          0.8 * 0.55; //this is because of the actual size of the assets
+      double scaleConstant = SCALE_FACTOR *
+          0.55; //this is because of the actual size of the assets
       if (LineBuilder.isElement(item.gfx)) {
         //because we added new graphics for these that are bigger
         scaleConstant *= 0.6;
@@ -85,9 +89,9 @@ class MonsterAbilityCardWidget extends StatefulWidget {
           ],
         ),
         key: const ValueKey<int>(1),
-        margin: EdgeInsets.all(2 * scale * 0.8),
-        width: 178 * 0.8 * scale,
-        height: 118 * 0.8 * scale,
+        margin: EdgeInsets.all(2 * scale * SCALE_FACTOR),
+        width: CARD_WIDTH * SCALE_FACTOR * scale,
+        height: 118 * SCALE_FACTOR * scale,
         child: Stack(
           //fit: StackFit.loose,
           //alignment: Alignment.topCenter,
@@ -98,9 +102,9 @@ class MonsterAbilityCardWidget extends StatefulWidget {
               borderRadius: BorderRadius.circular(8.0 * scale),
               child: Image(
                 fit: BoxFit.fill,
-                height: 116 * 0.8 * scale,
-                width: 178 * 0.8 * scale,
-                //height: 123 * 0.8 * scale,
+                height: 116 * SCALE_FACTOR * scale,
+                width: CARD_WIDTH * SCALE_FACTOR * scale,
+                //height: 123 * SCALE_FACTOR * scale,
                 image: AssetImage(frosthavenStyle
                     ? "assets/images/psd/monsterAbility-front_fh.png"
                     : "assets/images/psd/monsterAbility-front.png"),
@@ -110,8 +114,10 @@ class MonsterAbilityCardWidget extends StatefulWidget {
                 top: frosthavenStyle ? 2 * scale : 0 * scale,
                 //left: 40 * scale,
                 child: SizedBox(
-                  height: 110 * scale * 0.8,
-                  width: 178 * scale * 0.8, //needed for line breaks in lines
+                  height: 110 * scale * SCALE_FACTOR,
+                  width: CARD_WIDTH *
+                      scale *
+                      SCALE_FACTOR, //needed for line breaks in lines
 
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -133,7 +139,7 @@ class MonsterAbilityCardWidget extends StatefulWidget {
                 )),
             Positioned(
                 left: 4.0 * scale,
-                top: 16.0 * 0.8 * scale,
+                top: 16.0 * SCALE_FACTOR * scale,
                 child: Text(
                   textAlign: TextAlign.center,
                   initText,
@@ -144,22 +150,22 @@ class MonsterAbilityCardWidget extends StatefulWidget {
                       shadows: [shadow]),
                 )),
             Positioned(
-                left: 6.0 * 0.8 * scale,
-                bottom: 0.5 * 0.8 * scale,
+                left: 6.0 * SCALE_FACTOR * scale,
+                bottom: 0.5 * SCALE_FACTOR * scale,
                 child: Text(
                   card.nr.toString(),
                   style: TextStyle(
                       fontFamily: frosthavenStyle ? 'Markazi' : 'Majalla',
                       color: Colors.white,
-                      fontSize: 8 * 0.8 * scale,
+                      fontSize: 8 * SCALE_FACTOR * scale,
                       shadows: [shadow]),
                 )),
             card.shuffle
                 ? Positioned(
-                    left: 155 * 0.8 * scale,
-                    bottom: 4.0 * 0.8 * scale,
+                    left: 155 * SCALE_FACTOR * scale,
+                    bottom: 4.0 * SCALE_FACTOR * scale,
                     child: Image(
-                      height: 123 * 0.8 * 0.13 * scale,
+                      height: CARD_HEIGHT * SCALE_FACTOR * 0.13 * scale,
                       fit: BoxFit.cover,
                       image: const AssetImage(
                           "assets/images/abilities/shuffle.png"),
@@ -176,8 +182,10 @@ class MonsterAbilityCardWidget extends StatefulWidget {
               top: 11 * scale,
               //alignment: Alignment.center,
               child: SizedBox(
-                height: 110 * scale * 0.8,
-                width: 178 * scale * 0.8, //needed for line breaks in lines
+                height: 110 * scale * SCALE_FACTOR,
+                width: CARD_WIDTH *
+                    scale *
+                    SCALE_FACTOR, //needed for line breaks in lines
                 //color: Colors.amber,
                 child: LineBuilder.createLines(
                     card.lines,
@@ -207,10 +215,11 @@ class MonsterAbilityCardWidget extends StatefulWidget {
           ],
         ),
         key: const ValueKey<int>(0),
-        margin: EdgeInsets.all(2 * scale * 0.8),
-        width:
-            178 * 0.8 * scale, //this evaluates to same space as front somehow.
-        height: 118 * 0.8 * scale,
+        margin: EdgeInsets.all(2 * scale * SCALE_FACTOR),
+        width: CARD_WIDTH *
+            SCALE_FACTOR *
+            scale, //this evaluates to same space as front somehow.
+        height: 118 * SCALE_FACTOR * scale,
         child: Stack(
           alignment: Alignment.center,
           children: [
@@ -218,7 +227,7 @@ class MonsterAbilityCardWidget extends StatefulWidget {
               borderRadius: BorderRadius.circular(8.0 * scale),
               child: Image(
                 fit: BoxFit.fitHeight,
-                height: 114 * 0.8 * scale,
+                height: 114 * SCALE_FACTOR * scale,
                 image: AssetImage(frosthavenStyle
                     ? "assets/images/psd/MonsterAbility-back_fh.png"
                     : "assets/images/psd/MonsterAbility-back.png"),
@@ -226,17 +235,18 @@ class MonsterAbilityCardWidget extends StatefulWidget {
             ),
             size >= 0
                 ? Positioned(
-                    right: 6.0 * 0.8 * scale,
+                    right: 6.0 * SCALE_FACTOR * scale,
                     bottom: 0,
                     child: Text(
                       size.toString(),
                       style: TextStyle(
                           fontFamily: frosthavenStyle ? 'Markazi' : 'Majalla',
                           color: Colors.white,
-                          fontSize: 16 * 0.8 * scale,
+                          fontSize: 16 * SCALE_FACTOR * scale,
                           shadows: const [
                             Shadow(
-                                offset: Offset(1 * 0.8, 1 * 0.8),
+                                offset:
+                                    Offset(1 * SCALE_FACTOR, 1 * SCALE_FACTOR),
                                 color: Colors.black)
                           ]),
                     ))
@@ -281,7 +291,7 @@ class MonsterAbilityCardWidgetState extends State<MonsterAbilityCardWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final double scale = getScaleByReference(context);
+    final double scale = getScaleByReference(context) * 1.31;
     return ValueListenableBuilder<int>(
         valueListenable: _gameState.commandIndex,
         builder: (context, value, child) {

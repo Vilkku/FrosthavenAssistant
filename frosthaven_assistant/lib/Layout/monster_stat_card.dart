@@ -35,6 +35,10 @@ class MonsterStatCardWidgetState extends State<MonsterStatCardWidget> {
     super.initState();
   }
 
+  static const int CARD_WIDTH = 167;
+  static const int CARD_HEIGHT = 123;
+  static const double SCALE_FACTOR = 0.8;
+
   static void _handleAddPressed(
       Monster data, BuildContext context, bool left, bool isBoss) {
     Settings settings = getIt<Settings>();
@@ -86,7 +90,7 @@ class MonsterStatCardWidgetState extends State<MonsterStatCardWidget> {
       var leftStyle, var rightStyle, bool frosthavenStyle) {
     MonsterStatsModel normal = data.type.levels[data.level.value].normal!;
     MonsterStatsModel? elite = data.type.levels[data.level.value].elite;
-    double height = 123 * 0.8 * scale;
+    double height = CARD_HEIGHT * SCALE_FACTOR * scale;
 
     bool noCalculationSetting = getIt<Settings>().noCalculation.value;
 
@@ -122,14 +126,14 @@ class MonsterStatCardWidgetState extends State<MonsterStatCardWidget> {
           borderRadius: BorderRadius.circular(8.0 * scale),
           child: Image(
             height: 93.5 * scale,
-            width: 167 * scale,
+            width: CARD_WIDTH * scale,
             fit: BoxFit.fitHeight,
             image:
                 const AssetImage("assets/images/psd/monsterStats-normal.png"),
           ),
         ),
         Positioned(
-            width: 167 * scale,
+            width: CARD_WIDTH * scale,
             left: 2 * scale,
             top: 3.5 * scale,
             child: Text(
@@ -150,13 +154,13 @@ class MonsterStatCardWidgetState extends State<MonsterStatCardWidget> {
               style: TextStyle(
                   fontFamily: frosthavenStyle ? 'Markazi' : 'Majalla',
                   color: Colors.white,
-                  fontSize: 18 * 0.8 * scale,
+                  fontSize: 18 * SCALE_FACTOR * scale,
                   height: 1,
                   shadows: [shadow]),
             )),
         Positioned(
-          left: 80.0 * 0.8 * scale,
-          top: 26.0 * 0.8 * scale,
+          left: 80.0 * SCALE_FACTOR * scale,
+          top: 26.0 * SCALE_FACTOR * scale,
           child: Column(
             //mainAxisAlignment: MainAxisAlignment.center,
             //mainAxisSize: MainAxisSize.min,
@@ -171,8 +175,8 @@ class MonsterStatCardWidgetState extends State<MonsterStatCardWidget> {
         ),
         Positioned(
             left: 0.0,
-            top: 24.0 * 0.8 * scale,
-            width: 73 * 0.8 * scale,
+            top: 24.0 * SCALE_FACTOR * scale,
+            width: 73 * SCALE_FACTOR * scale,
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 //alignment: Alignment.topRight,
@@ -189,8 +193,8 @@ class MonsterStatCardWidgetState extends State<MonsterStatCardWidget> {
                       getIt<Settings>().shimmer.value),
                 ])),
         Positioned(
-          right: 77.0 * 0.8 * scale,
-          top: 26.0 * 0.8 * scale,
+          right: 77.0 * SCALE_FACTOR * scale,
+          top: 26.0 * SCALE_FACTOR * scale,
           child: Column(
             //crossAxisAlignment: CrossAxisAlignment.start,
             //mainAxisAlignment: MainAxisAlignment.center,
@@ -208,9 +212,9 @@ class MonsterStatCardWidgetState extends State<MonsterStatCardWidget> {
           ),
         ),
         Positioned(
-          width: 72 * 0.8 * scale,
+          width: 72 * SCALE_FACTOR * scale,
           right: 0.0,
-          top: 24.0 * 0.8 * scale,
+          top: 24.0 * SCALE_FACTOR * scale,
           child: LineBuilder.createLines(
               elite.attributes,
               false,
@@ -282,7 +286,7 @@ class MonsterStatCardWidgetState extends State<MonsterStatCardWidget> {
   static Widget buildBossLayout(Monster data, double scale, var shadow,
       var leftStyle, var rightStyle, bool frosthavenStyle) {
     bool noCalculationSetting = getIt<Settings>().noCalculation.value;
-    double height = 123 * 0.8 * scale;
+    double height = CARD_HEIGHT * SCALE_FACTOR * scale;
     MonsterStatsModel normal = data.type.levels[data.level.value].boss!;
     //normal stats calculated:
     String health = normal.health.toString();
@@ -350,7 +354,7 @@ class MonsterStatCardWidgetState extends State<MonsterStatCardWidget> {
     final specialStyle = TextStyle(
         fontFamily: frosthavenStyle ? 'Markazi' : 'Majalla',
         color: Colors.yellow,
-        fontSize: 14 * 0.8 * scale,
+        fontSize: 14 * SCALE_FACTOR * scale,
         height: 1,
         shadows: [shadow]);
 
@@ -361,7 +365,7 @@ class MonsterStatCardWidgetState extends State<MonsterStatCardWidget> {
           borderRadius: BorderRadius.circular(8.0 * scale),
           child: Image(
             height: 93.5 * scale,
-            width: 167 * scale,
+            width: CARD_WIDTH * scale,
             fit: BoxFit.fitWidth,
             image: const AssetImage("assets/images/psd/monsterStats-boss.png"),
           ),
@@ -374,7 +378,7 @@ class MonsterStatCardWidgetState extends State<MonsterStatCardWidget> {
               style: TextStyle(
                   fontFamily: frosthavenStyle ? 'Markazi' : 'Majalla',
                   color: Colors.white,
-                  fontSize: 18 * 0.8 * scale,
+                  fontSize: 18 * SCALE_FACTOR * scale,
                   height: 1,
                   shadows: [shadow]),
             )),
@@ -405,8 +409,8 @@ class MonsterStatCardWidgetState extends State<MonsterStatCardWidget> {
         ),
         Positioned(
             left: 40.0 * scale,
-            top: 20.0 * 0.8 * scale,
-            width: 160 * 0.8 * scale, //useful or not?
+            top: 20.0 * SCALE_FACTOR * scale,
+            width: 160 * SCALE_FACTOR * scale, //useful or not?
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 //alignment: Alignment.topRight,
@@ -416,7 +420,7 @@ class MonsterStatCardWidgetState extends State<MonsterStatCardWidget> {
                       ? Row(children: [
                           Text("    ", style: specialStyle),
                           SizedBox(
-                              width: 140 * 0.8 * scale,
+                              width: 140 * SCALE_FACTOR * scale,
                               child: LineBuilder.createLines(
                                   bossOtherAttributes,
                                   false,
@@ -480,7 +484,7 @@ class MonsterStatCardWidgetState extends State<MonsterStatCardWidget> {
                           children: [
                               Text("2:", style: specialStyle),
                               SizedBox(
-                                  width: 140 * 0.8 * scale,
+                                  width: 140 * SCALE_FACTOR * scale,
                                   child: LineBuilder.createLines(
                                       data.type.levels[data.level.value].boss!
                                           .special2,
@@ -520,8 +524,8 @@ class MonsterStatCardWidgetState extends State<MonsterStatCardWidget> {
         if (normal.range != 0)
           Positioned(
               height: 16 * scale,
-              left: 30.0 * 0.8 * scale,
-              top: 93.0 * 0.8 * scale,
+              left: 30.0 * SCALE_FACTOR * scale,
+              top: 93.0 * SCALE_FACTOR * scale,
               child: Image(
                 fit: BoxFit.fitHeight,
                 image: AssetImage(frosthavenStyle
@@ -563,7 +567,7 @@ class MonsterStatCardWidgetState extends State<MonsterStatCardWidget> {
     final rightStyle = TextStyle(
         fontFamily: frosthavenStyle ? 'Markazi' : 'Majalla',
         color: Colors.white,
-        fontSize: 16 * 0.8 * scale,
+        fontSize: 16 * SCALE_FACTOR * scale,
         height: 1.2,
         shadows: [shadow]);
 
@@ -582,7 +586,7 @@ class MonsterStatCardWidgetState extends State<MonsterStatCardWidget> {
                   ),
                 ],
               ),
-              margin: EdgeInsets.all(2 * scale * 0.8),
+              margin: EdgeInsets.all(2 * scale * SCALE_FACTOR),
               child: isBoss
                   ? buildBossLayout(data, scale, shadow, leftStyle, rightStyle,
                       frosthavenStyle)
@@ -593,13 +597,13 @@ class MonsterStatCardWidgetState extends State<MonsterStatCardWidget> {
 
   @override
   Widget build(BuildContext context) {
-    double scale = getScaleByReference(context);
+    double scale = getScaleByReference(context) * 1.31;
 
     bool isBoss = widget.data.type.levels[widget.data.level.value].boss != null;
 
     return Container(
         //height: 93.5 * scale,
-        width: 166 * scale, //167
+        width: CARD_WIDTH * scale,
         child: Stack(children: [
           GestureDetector(
               onDoubleTap: () {
@@ -613,11 +617,11 @@ class MonsterStatCardWidgetState extends State<MonsterStatCardWidget> {
               child: buildCard(widget.data, scale)),
           if (!isBoss)
             Positioned(
-                bottom: 5 * scale * 0.8,
-                left: 5 * scale * 0.8,
+                bottom: 5 * scale * SCALE_FACTOR,
+                left: 5 * scale * SCALE_FACTOR,
                 child: SizedBox(
-                    width: 25 * scale * 0.8 + 8,
-                    height: 25 * scale * 0.8 + 8,
+                    width: 25 * scale * SCALE_FACTOR + 8,
+                    height: 25 * scale * SCALE_FACTOR + 8,
                     child: ValueListenableBuilder<List<MonsterInstance>>(
                         valueListenable: widget.data.monsterInstances,
                         builder: (context, value, child) {
@@ -627,7 +631,7 @@ class MonsterStatCardWidgetState extends State<MonsterStatCardWidget> {
                           return IconButton(
                             padding: const EdgeInsets.only(right: 8, top: 8),
                             icon: Image.asset(
-                                height: 25 * scale * 0.8,
+                                height: 25 * scale * SCALE_FACTOR,
                                 fit: BoxFit.fitHeight,
                                 color: allStandeesOut
                                     ? Colors.white24
@@ -641,11 +645,11 @@ class MonsterStatCardWidgetState extends State<MonsterStatCardWidget> {
                           );
                         }))),
           Positioned(
-              bottom: 5 * scale * 0.8,
-              right: 5 * scale * 0.8,
+              bottom: 5 * scale * SCALE_FACTOR,
+              right: 5 * scale * SCALE_FACTOR,
               child: SizedBox(
-                  width: 25 * scale * 0.8 + 8,
-                  height: 25 * scale * 0.8 + 8,
+                  width: 25 * scale * SCALE_FACTOR + 8,
+                  height: 25 * scale * SCALE_FACTOR + 8,
                   child: ValueListenableBuilder<List<MonsterInstance>>(
                       valueListenable: widget.data.monsterInstances,
                       builder: (context, value, child) {
@@ -657,7 +661,7 @@ class MonsterStatCardWidgetState extends State<MonsterStatCardWidget> {
                                             widget.data.type.count
                                         ? Colors.white24
                                         : Colors.grey,
-                                height: 25 * scale * 0.8,
+                                height: 25 * scale * SCALE_FACTOR,
                                 fit: BoxFit.fitHeight,
                                 colorBlendMode: BlendMode.modulate,
                                 'assets/images/psd/add.png'),

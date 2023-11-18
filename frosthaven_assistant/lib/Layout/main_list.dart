@@ -69,7 +69,7 @@ class Item extends StatelessWidget {
       if (totalWidthOfMonsterBoxes > 2 * listWidth) {
         standeeRows = 3;
       }
-      height = 122 * 0.8 * scale + standeeRows * 32 * scale;
+      height = 187 * 0.8 * scale + standeeRows * 32 * scale;
     } else {
       height = 0;
     }
